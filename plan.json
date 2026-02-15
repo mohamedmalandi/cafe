@@ -1,0 +1,33 @@
+{
+    "project": {
+        "name": "Cafe Digital Menu (Syria Premium Edition)",
+        "description": "A focused, high-performance digital menu optimized for Syrian internet speeds, featuring PWA, WhatsApp ordering, and complete admin control.",
+        "techStack": "Next.js (App Router), Tailwind, MongoDB, NextAuth"
+    },
+    "phases": [
+        {
+            "phase": 1,
+            "prompt": "You are Antigravity IDE. Initialize a Next.js App Router project using Tailwind CSS. \n\nCRITICAL SETUP:\n1. Fonts: Configure 'next/font' with 'Tajawal' (Arabic) and 'Inter' (English). Do not use Google Fonts CDN.\n2. Theming: Use CSS Variables for colors (e.g., --primary, --background) in 'global.css'. Do NOT hardcode hex colors in tailwind config.\n3. i18n: Set up a lightweight Arabic (default) / English dictionary.\n4. Structure: Organize folders for a scalable architecture.\n5. Default: Enable Dark Mode by default."
+        },
+        {
+            "phase": 2,
+            "prompt": "Configure Mongoose with MongoDB. Create these Schemas:\n1. StoreSettings (Singleton): 'storeName', 'wifiSSID', 'wifiPassword', 'whatsappNumber', 'primaryColor', 'logoUrl', 'currency' (default: SYP).\n2. Category: 'name.ar', 'name.en', 'order', 'icon'.\n3. Product: 'name.ar', 'name.en', 'description.ar', 'description.en', 'price', 'discountPrice', 'image', 'categoryId', 'isAvailable', 'isNew'.\n4. AdminUser: Email/Password secure schema.\nEnsure strict typing."
+        },
+        {
+            "phase": 3,
+            "prompt": "Build the Admin Panel using NextAuth. \nFEATURES:\n1. Dashboard: Stats.\n2. Store Settings Page: UI to update WiFi, Colors, and Whatsapp.\n3. QR Generator: Tab to generate/download menu QR.\n4. Menu Management: CRUD for Categories/Products.\nCRITICAL: Implement 'browser-image-compression' on client-side to resize images (max 800px) BEFORE uploading."
+        },
+        {
+            "phase": 4,
+            "prompt": "Build the Public Menu. \nCOMPONENTS:\n1. Hero: Logo & Cafe Name.\n2. WiFi Card: Copy password on tap.\n3. Sticky Nav: Categories.\n4. Product Cards: Image, Price, Add button.\n5. Cart Drawer.\nLOGIC:\n1. WhatsApp Button: Construct URL (wa.me/...) using 'encodeURIComponent' for Arabic text.\n2. Call Waiter Button.\n3. Framer Motion animations."
+        },
+        {
+            "phase": 5,
+            "prompt": "Convert to PWA. \n1. manifest.json: Configured correctly.\n2. Service Workers: Cache HTML/CSS/JS and Menu API. The menu must load offline.\n3. Images: Enforce 'next/image' with WebP."
+        },
+        {
+            "phase": 6,
+            "prompt": "Final Polish. \n1. Fetch 'primaryColor' from DB in Root Layout and inject into CSS Variables.\n2. Ensure Buttons/Borders use this variable.\n3. Check Cart -> WhatsApp flow on mobile view.\n4. Rate Limiting: Add basic rate limiting to API routes."
+        }
+    ]
+}

@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   CSS VARIABLES FOR THEMING
+   ============================================ */
+
+:root {
+  /* Primary Brand Colors - GOLD/AMBER */
+  --primary: #f59e0b;
+  /* Amber/Gold */
+  --primary-dark: #d97706;
+  --primary-light: #fbbf24;
+  --primary-foreground: #000000;
+  /* Black text on gold */
+
+  /* Secondary Colors */
+  --secondary: #8b5cf6;
+  /* Purple accent */
+  --accent: #10b981;
+  /* Green for success/CTA */
+
+  /* Background Colors - PURE BLACK (Brand Identity) */
+  --background: #000000;
+  /* Pure Black */
+  --background-secondary: #1a1a1a;
+  /* Slightly lighter black */
+  --foreground: #ffffff;
+  /* White text */
+  --muted: #9ca3af;
+  --border: #2d2d2d;
+
+  /* Semantic Colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* Force dark mode (Black background) */
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  background-color: #000000;
+  /* Force black */
+}
+
+body {
+  background-color: #000000;
+  /* Force black background */
+  color: #ffffff;
+  /* Force white text */
+  font-family: var(--font-tajawal), var(--font-inter), sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Optimize for mobile */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* RTL Support for Arabic */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.container-custom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Smooth transitions */
+.transition-theme {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Scrollbar styling for dark mode */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
