@@ -41,6 +41,8 @@ export default async function MenuPage() {
         ),
     }));
 
+    const currency = settings?.currency || 'SYP';
+
     return (
         <CartProvider>
             <OfflineIndicator />
@@ -60,12 +62,13 @@ export default async function MenuPage() {
                                 key={category._id}
                                 category={category}
                                 products={products}
+                                currency={currency}
                             />
                         ))}
                     </div>
                 </div>
 
-                <CartButton whatsappNumber={settings.whatsappNumber} />
+                <CartButton whatsappNumber={settings.whatsappNumber} currency={currency} />
                 <CallWaiterButton whatsappNumber={settings.whatsappNumber} />
             </div>
         </CartProvider>

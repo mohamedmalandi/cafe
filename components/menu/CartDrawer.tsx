@@ -8,9 +8,10 @@ import { formatPrice, generateWhatsAppURL } from '@/lib/utils';
 interface CartDrawerProps {
     onClose: () => void;
     whatsappNumber?: string;
+    currency: string;
 }
 
-export default function CartDrawer({ onClose, whatsappNumber }: CartDrawerProps) {
+export default function CartDrawer({ onClose, whatsappNumber, currency }: CartDrawerProps) {
     const { items, updateQuantity, removeItem, clearCart, total } = useCart();
 
     const handleSendOrder = () => {
@@ -20,10 +21,10 @@ export default function CartDrawer({ onClose, whatsappNumber }: CartDrawerProps)
         }
 
         const orderDetails = items.map(
-            (item) => `• ${item.name.ar} × ${item.quantity} = ${formatPrice(item.price * item.quantity)}`
+            (item) => `• ${item.name.ar} × ${item.quantity} = ${formatPrice(item.price * item.quantity, currency)}`
         ).join('\n');
 
-        const message = `🍽️ طلب جديد\n\n📝 الطلبات:\n${orderDetails}\n\n💰 المجموع: ${formatPrice(total)}\n\nشكراً لكم!`;
+        const message = `🍽️ طلب جديد\n\n📝 الطلبات:\n${orderDetails}\n\n💰 المجموع: ${formatPrice(total, currency)}\n\nشكراً لكم!`;
 
         const whatsappURL = generateWhatsAppURL(whatsappNumber, message);
         window.open(whatsappURL, '_blank');
@@ -82,7 +83,7 @@ export default function CartDrawer({ onClose, whatsappNumber }: CartDrawerProps)
                             <div className="flex-1">
                                 <h3 className="font-bold text-foreground">{item.name.ar}</h3>
                                 <p className="text-sm text-muted mb-2">{item.name.en}</p>
-                                <p className="text-primary font-bold">{formatPrice(item.price)}</p>
+                                <p className="text-primary font-bold">{formatPrice(item.price, currency)}</p>
                             </div>
 
                             <div className="flex flex-col items-end justify-between">
@@ -117,7 +118,7 @@ export default function CartDrawer({ onClose, whatsappNumber }: CartDrawerProps)
                 <div className="p-4 border-t border-border space-y-3">
                     <div className="flex justify-between items-center text-lg font-bold">
                         <span className="text-foreground">المجموع:</span>
-                        <span className="text-primary">{formatPrice(total)}</span>
+                        <span className="text-primary">{formatPrice(total, currency)}</span>
                     </div>
 
                     <button

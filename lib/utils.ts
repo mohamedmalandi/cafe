@@ -3,13 +3,14 @@
  */
 
 /**
- * Format price in Syrian Pounds
+ * Format price with dynamic currency
  */
-export const formatPrice = (price: number): string => {
-    return new Intl.NumberFormat('ar-SY', {
+export const formatPrice = (price: number, currency: string = 'SYP'): string => {
+    return new Intl.NumberFormat('en-US', {
         style: 'currency',
-        currency: 'SYP',
-        maximumFractionDigits: 0,
+        currency: currency,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
     }).format(price);
 };
 

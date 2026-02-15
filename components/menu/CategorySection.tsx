@@ -19,9 +19,10 @@ interface Product {
 interface CategorySectionProps {
     category: Category;
     products: Product[];
+    currency: string;
 }
 
-export default function CategorySection({ category, products }: CategorySectionProps) {
+export default function CategorySection({ category, products, currency }: CategorySectionProps) {
     return (
         <section id={`category-${category._id}`} className="scroll-mt-24">
             <div className="flex items-center gap-3 mb-6">
@@ -35,7 +36,7 @@ export default function CategorySection({ category, products }: CategorySectionP
             ) : (
                 <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
                     {products.map((product, index) => (
-                        <ProductCard key={product._id} product={product} index={index} />
+                        <ProductCard key={product._id} product={product} index={index} currency={currency} />
                     ))}
                 </div>
             )}

@@ -7,9 +7,10 @@ import CartDrawer from './CartDrawer';
 
 interface CartButtonProps {
     whatsappNumber?: string;
+    currency: string;
 }
 
-export default function CartButton({ whatsappNumber }: CartButtonProps) {
+export default function CartButton({ whatsappNumber, currency }: CartButtonProps) {
     const { itemCount } = useCart();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -38,7 +39,7 @@ export default function CartButton({ whatsappNumber }: CartButtonProps) {
             </motion.button>
 
             <AnimatePresence>
-                {isOpen && <CartDrawer onClose={() => setIsOpen(false)} whatsappNumber={whatsappNumber} />}
+                {isOpen && <CartDrawer onClose={() => setIsOpen(false)} whatsappNumber={whatsappNumber} currency={currency} />}
             </AnimatePresence>
         </>
     );

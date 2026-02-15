@@ -19,9 +19,10 @@ interface Product {
 interface ProductCardProps {
     product: Product;
     index: number;
+    currency: string;
 }
 
-export default function ProductCard({ product, index }: ProductCardProps) {
+export default function ProductCard({ product, index, currency }: ProductCardProps) {
     const { addItem } = useCart();
     const [imageLoading, setImageLoading] = useState(true);
 
@@ -103,7 +104,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 
                 {/* Price Section - Large & Gold */}
                 <div className="text-lg font-bold text-amber-400" style={{ color: 'var(--primary)' }}>
-                    {formatPrice(product.price)}
+                    {formatPrice(product.price, currency)}
                 </div>
 
                 {/* Floating Action Button - Full Width */}

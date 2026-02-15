@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import ImageUpload from '@/components/admin/ImageUpload';
+import { formatPrice } from '@/lib/utils';
 
 interface Product {
     _id: string;
@@ -22,6 +23,7 @@ interface Category {
 export default function ProductsPage() {
     const [products, setProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
+    const [currency, setCurrency] = useState('SYP');
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [editingProduct, setEditingProduct] = useState<Product | null>(null);
@@ -41,16 +43,21 @@ export default function ProductsPage() {
 
     const fetchData = async () => {
         try {
-            const [productsRes, categoriesRes] = await Promise.all([
+            const [productsRes, categoriesRes, settingsRes] = await Promise.all([
                 fetch('/api/admin/products'),
                 fetch('/api/admin/categories'),
+                fetch('/api/admin/settings'),
             ]);
 
             const productsData = await productsRes.json();
             const categoriesData = await categoriesRes.json();
+            const settingsData = await settingsRes.json();
 
             if (productsData.success) setProducts(productsData.products);
             if (categoriesData.success) setCategories(categoriesData.categories);
+            if (settingsData.success && settingsData.settings?.currency) {
+                setCurrency(settingsData.settings.currency);
+            }
         } catch (error) {
             console.error('Error:', error);
         } finally {
@@ -161,7 +168,7 @@ export default function ProductsPage() {
 
                             <div className="mb-3">
                                 <span className="text-xl font-bold text-primary">
-                                    {product.price} SYP
+                                    {formatPrice(product.price, currency)}
                                 </span>
                             </div>
 
